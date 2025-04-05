@@ -1,0 +1,51 @@
+#tạo service mysql với image mysql:8.0
+version: '3.8'
+
+services:
+  mysql:
+    #tạo image từ mysql:8.0
+    image: mysql:8.0
+    #tạo container với tên mysql_dtl
+    container_name: mysql_dtl
+    #set mật khẩu root, database, user, password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dbDTL
+      MYSQL_USER: userDTL
+      MYSQL_PASSWORD: passDTL
+    #mở cổng 3306
+    ports:
+      - "3306:3306"
+    #tạo volume cho dữ liệu mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    #tắt container khi dừng docker compose
+    restart: unless-stopped
+
+#tạo volume cho dữ liệu mysql
+volumes:
+  mysql_data: 
+
+# sau khi chạy xong, run lệnh: docker exec -it mysql_dtl mysql -u root -p 
+# sau đó nhập password là root
+# or: docker exec -it mysql_dtl mysql -u root -ppassDTL
+# or: docker exec -it mysql_dtl mysql -u userDTL -p dbDTL -> pass: passDTL
+# kiểm tra bằng lệnh: show databases;
+# tạo database dbDTL: create database dbDTL;
+# chọn database dbDTL: use dbDTL;
+# tạo table sinh_vien: create table sinh_vien(
+#   ma_sinh_vien int primary key,
+#   ten_sinh_vien varchar(255),
+#   tuoi int
+# );
+# thêm dữ liệu vào table sinh_vien: insert into sinh_vien(ma_sinh_vien, ten_sinh_vien, tuoi) values (1, 'Nguyen Van A', 20);
+# lấy dữ liệu từ table sinh_vien: select * from sinh_vien;
+# cập nhật dữ liệu trong table sinh_vien: update sinh_vien set ten_sinh_vien = 'Nguyen Van B' where ma_sinh_vien = 1;
+# xoá dữ liệu trong table sinh_vien: delete from sinh_vien where ma_sinh_vien = 1;
+# xoá table sinh_vien: drop table sinh_vien;
+# xoá database dbDTL: drop database dbDTL;
+# xoá container mysql_dtl: docker rm mysql_dtl
+# xoá image mysql:8.0: docker rmi mysql:8.0
+# xoá volume mysql_data: docker volume rm mysql_data
+
+
