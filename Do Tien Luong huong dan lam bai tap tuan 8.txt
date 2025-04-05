@@ -1,0 +1,16 @@
+Part1: Các lệnh docker compose cơ bản:
+1.  docker compose version : kiểm tra phiên bản docker compose
+2.	docker compose up: run file docker-compose.yml cùng cấp với vị trí hiện tại
+3.	docker compose up -d: run file docker-compose.yml nhưng chạy chế độ nền
+4.	docker compose ps: hiện tất cả các container đang chạy.
+5.	docker compose down: tắt và xoá các container 
+6.	docker compose restart: restart lại các container
+7.	docker compose logs -f: show log các container 
+8.	docker compose build: build thành image với file docker-compose.yml 
+9.	docker compose exec <service_name> <command>: xem các service mà container chạy
+10.	docker compose down -v: tắt tiến trình hiện tại.
+11.	docker compose run <service_name> <command> run service có trong image
+12.	docker compose stop <service_name> stop service của container 
+13.	docker compose rm <service_name> : xoá service của container 
+14.	docker compose config: xem các config của các container
+15.	docker compose up -d –build: build thành image và run image ở chế độ nền
