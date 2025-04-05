@@ -1,0 +1,12 @@
+#tạo service web với image nginx:alpine
+version: '3'
+services:
+  web:
+    #tạo image từ Dockerfile
+    build: .
+    #mở cổng 80
+    ports:
+      - "8080:80"
+    #mount file index.html vào thư mục /usr/share/nginx/html/
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html 
